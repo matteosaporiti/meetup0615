@@ -4,18 +4,6 @@ Router.configure({
         "use strict";
         return Meteor.subscribe('chats');
     }
-    /*
-    loadingTemplate: 'empty',
-    waitOn: function () {
-        "use strict";
-        _.each(preloadSubscriptions, function (sub) {
-            everywhereSubscriptions.subscribe(sub);
-        });
-        return _.map(waitPreloadSubscriptions, function (waitSub) {
-            return everywhereSubscriptions.subscribe(waitSub);
-        });
-    }
-    */
 });
 
 Router.map(function () {

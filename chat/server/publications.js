@@ -9,6 +9,7 @@ Meteor.publish('chats', function() {
                 sub.added('message.channel',id, {name: fields.channel});
             }
         }
+        //if channels can be removed the logic should keep track of the id, but it would be easier to change the "schema"
     });
 
     // mark complete, clean up when stopped

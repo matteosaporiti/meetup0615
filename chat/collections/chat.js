@@ -3,7 +3,7 @@ Message = new Mongo.Collection('message');
 
 Meteor.methods({
     insertMessage: function(message) {
-        message.date = new Date();
+        "use strict";
         Message.insert(message, function (err) {
             if (err) {
                 console.log(err);
