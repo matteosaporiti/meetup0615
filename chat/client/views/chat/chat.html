@@ -1,0 +1,15 @@
+<template name="chat">
+
+    <form id="insertMessage">
+        <input placeholder="Name" id="name">
+        <input placeholder="Text" id="text">
+        <input type="submit" value="Insert">
+    </form>
+
+
+    <h2>Messages</h2>
+<ul>
+  {{> messages}}
+  {{> messagesOld}}
+</ul>
+</template>
