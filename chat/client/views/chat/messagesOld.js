@@ -10,7 +10,7 @@ Template.messagesOld.helpers({
 Template.messagesOld.onRendered(function () {
     "use strict";
     Template.messagesOld.messages.set([]);
-    Template.chat.observeHandler = Message.find({channel: Router.current().params.id}).observe({
+    Template.messagesOld.observeHandler = Message.find({channel: Router.current().params.id}).observe({
         removed: function (message) {
             "use strict";
             var messages = [message];
