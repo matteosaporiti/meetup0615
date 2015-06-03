@@ -1,12 +1,5 @@
 Template.messagesOld.messages = new ReactiveVar([]);
 
-Template.messagesOld.addMore = function (message){
-    "use strict";
-    var messages = [message];
-    var oldMessages = Template.messagesOld.messages.get();
-    Template.messagesOld.messages.set(messages.concat(oldMessages));
-};
-
 Template.messagesOld.helpers({
     messages : function(){
         "use strict";
@@ -14,7 +7,22 @@ Template.messagesOld.helpers({
     }
 });
 
-Template.messagesOld.removeAll = function (){
+Template.messagesOld.onRendered(function () {
     "use strict";
     Template.messagesOld.messages.set([]);
-};
+    Template.chat.observeHandler = Message.find({channel: Router.current().params.id}).observe({
+        removed: function (message) {
+            "use strict";
+            var messages = [message];
+            var oldMessages = Template.messagesOld.messages.get();
+            Template.messagesOld.messages.set(messages.concat(oldMessages));
+        }
+    });
+});
+
+Template.messagesOld.onDestroyed(function () {
+    "use strict";
+    if (Template.messagesOld.observeHandler) {
+        Template.messagesOld.observeHandler.stop();
+    }
+});

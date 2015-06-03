@@ -15,20 +15,3 @@ Template.chat.events({
         return false;
     }
 });
-
-Template.chat.onRendered(function () {
-    "use strict";
-    Template.messagesOld.removeAll();
-    Template.chat.observeHandler = Message.find({channel: Router.current().params.id}).observe({
-        removed: function (message) {
-            Template.messagesOld.addMore(message);
-        }
-    });
-});
-
-Template.chat.onDestroyed(function () {
-    "use strict";
-    if (Template.chat.observeHandler) {
-        Template.chat.observeHandler.stop();
-    }
-});
